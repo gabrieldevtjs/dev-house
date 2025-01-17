@@ -67,6 +67,7 @@ export default function Home() {
               alt="iconUser"
               width={30}
               height={30}
+              className="hidden"
             ></Image>
 
             <button className="bg-rose-500 hover:bg-blue-600 duration-300 text-white hidden sm:flex items-center justify-center gap-2 px-4 rounded ">
@@ -81,7 +82,7 @@ export default function Home() {
               <i className="fa fa-bars"></i>
             </button>
 
-            <button onClick={toggleMenu} className="text-2xl sm:hidden">
+            <button onClick={toggleMenu} className="text-2xl sm:hidden mr-3">
               {menu ? "✖" : "☰"}
             </button>
           </div>
@@ -122,7 +123,7 @@ export default function Home() {
 
         <section className="w-full px-3 lg:px-6">
           <div className="flex w-full items-baseline justify-between">
-            <h1 className="font-bold text-3xl mt-4 mb-6">Compre ou alugue</h1>
+            <h1 className=" text-3xl mt-4 mb-6 font-semibold hidden sm:flex">Compre ou alugue</h1>
             <span className="hidden md:block text-gray-600">
               100 casas encontradas
             </span>
