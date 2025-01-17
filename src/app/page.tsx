@@ -1,101 +1,376 @@
+"use client";
 import Image from "next/image";
+import { use, useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [menu, setMenu] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const toggleMenu = () => {
+    setMenu(!menu);
+  };
+
+  return (
+    <div className="flex w-full">
+      <aside className="border-r-2 hidden sm:flex w-full max-w-[200px] min-h-screen relative bg-white flex-col px-2 py-5">
+        <div className="fixed">
+          <div>
+            <h1 className="text-rose-500 text-3xl font-bold">DevHouse</h1>
+          </div>
+
+          <nav className="flex flex-col mt-8 w-full gap-5">
+            <a
+              href="#"
+              className="tet-gray-500 font-medium hover:text-black hover:bg-gray-100 p-3 rounded-lg duration-300"
+            >
+              Aluguel
+            </a>
+            <a
+              href="#"
+              className="tet-gray-500 font-medium hover:text-black hover:bg-gray-100 p-3 rounded-lg duration-300"
+            >
+              Compra
+            </a>
+            <a
+              href="#"
+              className="tet-gray-500 font-medium hover:text-black hover:bg-gray-100 p-3 rounded-lg duration-300"
+            >
+              Serviços
+            </a>
+            <a
+              href="#"
+              className="tet-gray-500 font-medium hover:text-black hover:bg-gray-100 p-3 rounded-lg duration-300"
+            >
+              Contatos
+            </a>
+          </nav>
         </div>
+
+        <button className="w-11 h-11 rounded-full bg-gray-100 fixed z-30 bottom-5 left-4 hover:bg-gray-300 duration-200">
+          <i className="fa fa-phone"></i>
+        </button>
+      </aside>
+
+      <main className="w-full flex flex-col pb-4 ">
+        <header className="bg-white w-full py-5 px-3 flex flex-row items-center justify-between">
+          <div className="flex items-center bg-slate-100 px-3 py-2 w-full max-w-xs lg:max-w-[50%] rounded-lg lg:mr-8">
+            <i className="fa fa-search text-gray-500"></i>
+            <input
+              type="text"
+              className="w-full bg-slate-100 px-2 outline-none"
+              placeholder="Procurando apartamento?"
+            />
+          </div>
+
+          <div className="flex gap-3 items-center">
+            <Image
+              src={"/assets/user3.svg"}
+              alt="iconUser"
+              width={30}
+              height={30}
+            ></Image>
+
+            <button className="bg-rose-500 hover:bg-blue-600 duration-300 text-white hidden sm:flex items-center justify-center gap-2 px-4 rounded ">
+              <span className="md:flex">Sign In</span>
+              <i className="fa fa-user md:ml-1"></i>
+            </button>
+
+            <button
+              id="btn-open"
+              className="sm:hidden flex items-center justify-center px-4 py-2"
+            >
+              <i className="fa fa-bars"></i>
+            </button>
+
+            <button onClick={toggleMenu} className="text-2xl sm:hidden">
+              {menu ? "✖" : "☰"}
+            </button>
+          </div>
+        </header>
+
+        <div className="sm:hidden">
+          <div
+            className={`${
+              menu ? "flex" : "hidden"
+            } p-4 w-full border bg-gray-100`}
+          >
+            <nav className="w-full flex flex-col items-center">
+              <ul className="flex flex-col items-center">
+                <li className="border-b-4 border-rose-500 w-max p-3">
+                  <a href="#homee" className="hover:text-rose-700">
+                    ALUGUEL
+                  </a>
+                </li>
+                <li className="border-b-4 border-rose-500 w-max p-3">
+                  <a href="#sobre" className="hover:text-rose-700">
+                    COMPRA
+                  </a>
+                </li>
+                <li className="border-b-4 border-rose-500 w-max p-3">
+                  <a href="#skills" className="hover:text-rose-700">
+                    SERVIÇOS
+                  </a>
+                </li>
+                <li className="border-b-4 border-rose-500 w-max p-3">
+                  <a href="#projetos" className="hover:text-rose-700">
+                    CONTATOS
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <section className="w-full px-3 lg:px-6">
+          <div className="flex w-full items-baseline justify-between">
+            <h1 className="font-bold text-3xl mt-4 mb-6">Compre ou alugue</h1>
+            <span className="hidden md:block text-gray-600">
+              100 casas encontradas
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <a
+              href="#"
+              className="bg-white p-3 rounded-lg min-h-[400px] relative flex flex-col hover:shadow-xl duration-300"
+            >
+              <div>
+                <div className="group overflow-hidden rounded-lg">
+                  <div className="absolute z-40 top-5 left-5">
+                    <div className="flex bg-slate-50/70 group-hover:bg-white duration-300 self-start items-center justify-center gap-3 px-3 py-1 rounded-full">
+                      <i className="fa fa-map"></i>
+                      <p className="font-medium text-sm">Campo Grande - MS</p>
+                    </div>
+                  </div>
+
+                  <img
+                    src="assets/1.jpg"
+                    alt="Casa"
+                    className="rounded-lg w-full h-64 object-cover group-hover:scale-110 duration-300"
+                  />
+                </div>
+
+                <div className="w-full flex flex-col gap-1 my-2">
+                  <h2 className="text-lg font-bold">Apartamento grande</h2>
+                  <div>
+                    <p className="text-gray-600 line-through text-sm">
+                      R$ 3.000/mês
+                    </p>
+                    <p className="my-1 font-bold text-indigo-500">
+                      R$ 2.200/mês
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-auto">
+                <span className="font-medium text-sm">100 mts -</span>
+                <span className="font-medium text-sm">3 quartos -</span>
+                <span className="font-medium text-sm">2 banheiros</span>
+              </div>
+            </a>
+
+            <a
+              href="#"
+              className="bg-white p-3 rounded-lg min-h-[400px] relative flex flex-col hover:shadow-xl duration-300"
+            >
+              <div>
+                <div className="group overflow-hidden rounded-lg">
+                  <div className="absolute z-40 top-5 left-5">
+                    <div className="flex bg-slate-50/70 group-hover:bg-white duration-300 self-start items-center justify-center gap-3 px-3 py-1 rounded-full">
+                      <i className="fa fa-map"></i>
+                      <p className="font-medium text-sm">Meia Praia - SC</p>
+                    </div>
+                  </div>
+
+                  <img
+                    src="assets/2.jpg"
+                    alt="Casa"
+                    className="rounded-lg w-full h-64 object-cover group-hover:scale-110 duration-300"
+                  />
+                </div>
+
+                <div className="w-full flex flex-col gap-1 my-2">
+                  <h2 className="text-lg font-bold">Apartamento praia</h2>
+                  <div>
+                    <p className="text-gray-600 line-through text-sm">
+                      R$ 5.000/mês
+                    </p>
+                    <p className="my-1 font-bold text-indigo-500">
+                      R$ 3.200/mês
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-auto">
+                <span className="font-medium text-sm">160 mts -</span>
+                <span className="font-medium text-sm">4 quartos -</span>
+                <span className="font-medium text-sm">2 banheiros</span>
+              </div>
+            </a>
+
+            <a
+              href="#"
+              className="bg-white p-3 rounded-lg min-h-[400px] relative flex flex-col hover:shadow-xl duration-300"
+            >
+              <div>
+                <div className="group overflow-hidden rounded-lg">
+                  <div className="absolute z-40 top-5 left-5">
+                    <div className="flex bg-slate-50/70 group-hover:bg-white duration-300 self-start items-center justify-center gap-3 px-3 py-1 rounded-full">
+                      <i className="fa fa-map"></i>
+                      <p className="font-medium text-sm">Meia Praia - SC</p>
+                    </div>
+                  </div>
+
+                  <img
+                    src="assets/3.jpg"
+                    alt="Casa"
+                    className="rounded-lg w-full h-64 object-cover group-hover:scale-110 duration-300"
+                  />
+                </div>
+
+                <div className="w-full flex flex-col gap-1 my-2">
+                  <h2 className="text-lg font-bold">Apartamento praia</h2>
+                  <div>
+                    <p className="text-gray-600 line-through text-sm">
+                      R$ 5.000/mês
+                    </p>
+                    <p className="my-1 font-bold text-indigo-500">
+                      R$ 3.200/mês
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-auto">
+                <span className="font-medium text-sm">160 mts -</span>
+                <span className="font-medium text-sm">4 quartos -</span>
+                <span className="font-medium text-sm">2 banheiros</span>
+              </div>
+            </a>
+
+            <a
+              href="#"
+              className="bg-white p-3 rounded-lg min-h-[400px] relative flex flex-col hover:shadow-xl duration-300"
+            >
+              <div>
+                <div className="group overflow-hidden rounded-lg">
+                  <div className="absolute z-40 top-5 left-5">
+                    <div className="flex bg-slate-50/70 group-hover:bg-white duration-300 self-start items-center justify-center gap-3 px-3 py-1 rounded-full">
+                      <i className="fa fa-map"></i>
+                      <p className="font-medium text-sm">Meia Praia - SC</p>
+                    </div>
+                  </div>
+
+                  <img
+                    src="assets/4.jpg"
+                    alt="Casa"
+                    className="rounded-lg w-full h-64 object-cover group-hover:scale-110 duration-300"
+                  />
+                </div>
+
+                <div className="w-full flex flex-col gap-1 my-2">
+                  <h2 className="text-lg font-bold">Apartamento praia</h2>
+                  <div>
+                    <p className="text-gray-600 line-through text-sm">
+                      R$ 5.000/mês
+                    </p>
+                    <p className="my-1 font-bold text-indigo-500">
+                      R$ 3.200/mês
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-auto">
+                <span className="font-medium text-sm">160 mts -</span>
+                <span className="font-medium text-sm">4 quartos -</span>
+                <span className="font-medium text-sm">2 banheiros</span>
+              </div>
+            </a>
+
+            <a
+              href="#"
+              className="bg-white p-3 rounded-lg min-h-[400px] relative flex flex-col hover:shadow-xl duration-300"
+            >
+              <div>
+                <div className="group overflow-hidden rounded-lg">
+                  <div className="absolute z-40 top-5 left-5">
+                    <div className="flex bg-slate-50/70 group-hover:bg-white duration-300 self-start items-center justify-center gap-3 px-3 py-1 rounded-full">
+                      <i className="fa fa-map"></i>
+                      <p className="font-medium text-sm">Meia Praia - SC</p>
+                    </div>
+                  </div>
+
+                  <img
+                    src="assets/5.jpg"
+                    alt="Casa"
+                    className="rounded-lg w-full h-64 object-cover group-hover:scale-110 duration-300"
+                  />
+                </div>
+
+                <div className="w-full flex flex-col gap-1 my-2">
+                  <h2 className="text-lg font-bold">Apartamento praia</h2>
+                  <div>
+                    <p className="text-gray-600 line-through text-sm">
+                      R$ 5.000/mês
+                    </p>
+                    <p className="my-1 font-bold text-indigo-500">
+                      R$ 3.200/mês
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-auto">
+                <span className="font-medium text-sm">160 mts -</span>
+                <span className="font-medium text-sm">4 quartos -</span>
+                <span className="font-medium text-sm">2 banheiros</span>
+              </div>
+            </a>
+
+            <a
+              href="#"
+              className="bg-white p-3 rounded-lg min-h-[400px] relative flex flex-col hover:shadow-xl duration-300"
+            >
+              <div>
+                <div className="group overflow-hidden rounded-lg">
+                  <div className="absolute z-40 top-5 left-5">
+                    <div className="flex bg-slate-50/70 group-hover:bg-white duration-300 self-start items-center justify-center gap-3 px-3 py-1 rounded-full">
+                      <i className="fa fa-map"></i>
+                      <p className="font-medium text-sm">Meia Praia - SC</p>
+                    </div>
+                  </div>
+
+                  <img
+                    src="assets/6.jpg"
+                    alt="Casa"
+                    className="rounded-lg w-full h-64 object-cover group-hover:scale-110 duration-300"
+                  />
+                </div>
+
+                <div className="w-full flex flex-col gap-1 my-2">
+                  <h2 className="text-lg font-bold">Apartamento praia</h2>
+                  <div>
+                    <p className="text-gray-600 line-through text-sm">
+                      R$ 5.000/mês
+                    </p>
+                    <p className="my-1 font-bold text-indigo-500">
+                      R$ 3.200/mês
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-auto">
+                <span className="font-medium text-sm">160 mts -</span>
+                <span className="font-medium text-sm">4 quartos -</span>
+                <span className="font-medium text-sm">2 banheiros</span>
+              </div>
+            </a>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
